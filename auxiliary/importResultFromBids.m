@@ -74,37 +74,43 @@ function result = importResultFromBids(path, selection)
 
     k = 1;
     % Shank clearance result
-    result.omc.sc.inds_l = M_sig(:, k  + [0, 1]);
+    result.omc.sc.name = 'Shank clearance';
+    result.omc.sc.N = size(M_sig, 1);
+    result.omc.sc.inds_l = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.sc.inds_r = M_sig(:, k  + [0, 1]);
+    result.omc.sc.inds_r = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.sc.vals_l = M_sig(:, k  + [0, 1]);
+    result.omc.sc.vals_l = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.sc.vals_r = M_sig(:, k  + [0, 1]);
+    result.omc.sc.vals_r = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.sc.sw_r = M_sig(:, k);
+    result.omc.sc.sw_r = M_sig(:, k)';
     k = k + 1;
-    result.omc.sc.sw_l = M_sig(:, k);
+    result.omc.sc.sw_l = M_sig(:, k)';
     k = k + 1;
 
     % Terminal swing result
-    result.omc.ts.inds_l = M_sig(:, k);
+    result.omc.ts.name = 'Terminal swing';
+    result.omc.ts.N = size(M_sig, 1);
+    result.omc.ts.inds_l = M_sig(:, k)';
     k = k + 1;
-    result.omc.ts.inds_r = M_sig(:, k);
+    result.omc.ts.inds_r = M_sig(:, k)';
     k = k + 1;
-    result.omc.ts.sw_r = M_sig(:, k);
+    result.omc.ts.sw_r = M_sig(:, k)';
     k = k + 1;
-    result.omc.ts.sw_l = M_sig(:, k);
+    result.omc.ts.sw_l = M_sig(:, k)';
     k = k + 1;
 
     % Initial contact result
-    result.omc.ic.inds_l = M_sig(:, k  + [0, 1]);
+    result.omc.ic.name = 'Initial contact';
+    result.omc.ic.N = size(M_sig, 1);
+    result.omc.ic.inds_l = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.ic.inds_r = M_sig(:, k  + [0, 1]);
+    result.omc.ic.inds_r = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.omc.ic.sw_r = M_sig(:, k);
+    result.omc.ic.sw_r = M_sig(:, k)';
     k = k + 1;
-    result.omc.ic.sw_l = M_sig(:, k);
+    result.omc.ic.sw_l = M_sig(:, k)';
     k = k + 1;
 
     % Load magnetic data ---------------------------------------------------
@@ -114,17 +120,19 @@ function result = importResultFromBids(path, selection)
 
     k = 1;
     % Shank clearance result
-    result.magn.sc.inds_l = M_sig(:, k  + [0, 1]);
+    result.magn.sc.name = 'Shank clearance';
+    result.magn.sc.N = size(M_sig, 1);
+    result.magn.sc.inds_l = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.magn.sc.inds_r = M_sig(:, k  + [0, 1]);
+    result.magn.sc.inds_r = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.magn.sc.vals_l = M_sig(:, k  + [0, 1]);
+    result.magn.sc.vals_l = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.magn.sc.vals_r = M_sig(:, k  + [0, 1]);
+    result.magn.sc.vals_r = M_sig(:, k  + [0, 1])';
     k = k + 2;
-    result.magn.sc.sw_r = M_sig(:, k);
+    result.magn.sc.sw_r = M_sig(:, k)';
     k = k + 1;
-    result.magn.sc.sw_l = M_sig(:, k);
+    result.magn.sc.sw_l = M_sig(:, k)';
     k = k + 1;
 
     result.selection = selection;
