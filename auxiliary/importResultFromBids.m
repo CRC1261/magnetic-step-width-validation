@@ -1,6 +1,4 @@
 function result = importResultFromBids(path, selection)
-%IMPORTSUBFROMBIDS Summary of this function goes here
-%   Detailed explanation goes here
 
     % Append slash at the end if necessary
     if (path(end) ~= '/') && (path(end) ~= '\')
@@ -69,9 +67,6 @@ function result = importResultFromBids(path, selection)
     % At this point, all required files are available
     % Load optical data ---------------------------------------------------
     M_sig = readmatrix([path_omc_result '_results.tsv'], 'FileType','text', 'Delimiter', '\t');
-    % M_ch = readcell([path_omc_result '_channels.tsv'], 'FileType','text', 'Delimiter', '\t');
-    % specs = jsondecode(fileread([path_omc_common '_motion.json']));
-
     k = 1;
     % Shank clearance result
     result.omc.sc.name = 'Shank clearance';
@@ -116,9 +111,6 @@ function result = importResultFromBids(path, selection)
 
     % Load magnetic data ---------------------------------------------------
     M_sig = readmatrix([path_magn_result '_results.tsv'], 'FileType','text', 'Delimiter', '\t');
-    % M_ch = readcell([path_omc_result '_channels.tsv'], 'FileType','text', 'Delimiter', '\t');
-    % specs = jsondecode(fileread([path_omc_common '_motion.json']));
-
     k = 1;
     % Shank clearance result
     result.magn.sc.name = 'Shank clearance';
@@ -135,33 +127,6 @@ function result = importResultFromBids(path, selection)
     k = k + 1;
     result.magn.sc.sw_r = M_sig(:, k)';
     k = k + 1;
-
-
-    result.magn.sc.l.mn = mean(result.magn.sc.sw_l);
-    result.magn.sc.l.std = std(result.magn.sc.sw_l);
-    
-    result.magn.sc.l.mn = mean(result.magn.sc.sw_l);
-    result.magn.sc.l.std = std(result.magn.sc.sw_l);
-
-    % % Calc error metrics: 
-    % % Shank clearance estimate vs. shank clearance reference
-    % result.e.sc_vs_sc.l = calcErrorMetrics(result.omc.sc.sw_l, result.magn.sc.sw_l);
-    % result.e.sc_vs_sc.r = calcErrorMetrics(result.omc.sc.sw_r, result.magn.sc.sw_r);
-    % result.e.sc_vs_sc.lr = calcErrorMetrics([result.omc.sc.sw_l, result.omc.sc.sw_r],...
-    %     [result.magn.sc.sw_l, result.magn.sc.sw_r]);
-    % 
-    % % Shank clearance estimate vs. terminal swing reference
-    % result.e.sc_vs_ts.l = calcErrorMetrics(result.omc.ts.sw_l, result.magn.sc.sw_l);
-    % result.e.sc_vs_ts.r = calcErrorMetrics(result.omc.ts.sw_r, result.magn.sc.sw_r);
-    % result.e.sc_vs_ts.lr = calcErrorMetrics([result.omc.ts.sw_l, result.omc.ts.sw_r],...
-    %     [result.magn.sc.sw_l, result.magn.sc.sw_r]);
-    % 
-    % % Shank clearance estimate vs. initial contact reference
-    % result.e.sc_vs_ic.l = calcErrorMetrics(result.omc.ic.sw_l, result.magn.sc.sw_l);
-    % result.e.sc_vs_ic.r = calcErrorMetrics(result.omc.ic.sw_r, result.magn.sc.sw_r);
-    % result.e.sc_vs_ic.lr = calcErrorMetrics([result.omc.ic.sw_l, result.omc.ic.sw_r],...
-    %     [result.magn.sc.sw_l, result.magn.sc.sw_r]);
-    % 
 
     result.selection = selection;
 end
