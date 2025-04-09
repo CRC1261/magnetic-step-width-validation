@@ -1,7 +1,7 @@
 %--------------------------------------------------------------------------
-% Example script to load magnetic motion data from the BIDS dataset 
-% and validate the accuracy of the magnetic motion tracking approach
-% jph 2024
+% Example script to load magnetic step width results from the BIDS dataset 
+% and validate them against the different reference methods
+% jph 2025
 %--------------------------------------------------------------------------
 clear
 close all
@@ -58,7 +58,6 @@ method_names = {'shank clearance', 'terminal swing', 'initial contact'};
 
 %% Visualize descriptive statistics and MAE
 visualizeStepWidthStat(stat_sw, e_sw)
-%%
 
 %% Print error metrics: Distance ------------------------------------------
 ae_d.sc_vs_sc = averageErrorMetrics(e_d.sc_vs_sc);
@@ -81,7 +80,7 @@ end
 ae_t.sc_vs_sc = averageErrorMetrics(e_t.sc_vs_sc);
 ae_t.sc_vs_ts = averageErrorMetrics(e_t.sc_vs_ts);
 
-fprintf('Timing results:\n')
+fprintf('\nTiming results:\n')
 
 labels = {'low', 'up', 'all'};
 methods = {'sc_vs_sc', 'sc_vs_ts'};
@@ -102,7 +101,7 @@ ae_sw.sc_vs_sc = averageErrorMetrics(e_sw.sc_vs_sc);
 ae_sw.sc_vs_ts = averageErrorMetrics(e_sw.sc_vs_ts);
 ae_sw.sc_vs_ic = averageErrorMetrics(e_sw.sc_vs_ic);
 
-fprintf('Step width results\n');
+fprintf('\nStep width results\n');
 
 labels = {'l', 'r', 'lr'};
 methods = {'sc_vs_sc', 'sc_vs_ts', 'sc_vs_ic'};
