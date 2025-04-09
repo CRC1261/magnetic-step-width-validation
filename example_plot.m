@@ -17,11 +17,12 @@ path = 'C:/motion_distest_bids/step_width/data/';
 % Select subfolder (e.g., sub-11) and task (e.g., task-walk05ms) to load
 data_select = {'01', 'walk05ms'};
 
-% Load --------------------------------------------------------------------
+% Load result -------------------------------------------------------------
 result = importResultFromBids(path, data_select);
 if ~isstruct(result)
     return
 end
 
-% Plot result ------------------------------------------------------------
-visualizeStepWidthResult(result)
+% Plot result -------------------------------------------------------------
+visualizeStepWidthResult(result);
+
