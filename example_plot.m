@@ -4,7 +4,7 @@
 % jph 2025
 %--------------------------------------------------------------------------
 clear
-close all
+% close all
 clc
 
 addpath('auxiliary')
@@ -24,4 +24,3 @@ end
 
 % Plot result -------------------------------------------------------------
 visualizeStepWidthResult(result);
-

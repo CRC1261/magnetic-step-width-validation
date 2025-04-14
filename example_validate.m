@@ -54,10 +54,10 @@ for i = 1 : N_sel
     e_sw.sc_vs_ic(i) = compareStepWidth(result.omc.ic, result.magn.sc);
 end
 
-method_names = {'shank clearance', 'terminal swing', 'initial contact'};
+method_names = {'shank clearance', 'mid-swing', 'initial contact'};
 
 %% Visualize descriptive statistics and MAE
-visualizeStepWidthStat(stat_sw, e_sw)
+visualizeStepWidthStat(stat_sw, e_sw);
 
 %% Print error metrics: Distance ------------------------------------------
 ae_d.sc_vs_sc = averageErrorMetrics(e_d.sc_vs_sc);

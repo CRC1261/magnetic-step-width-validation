@@ -4,7 +4,7 @@ function gf = visualizeStepWidthStat(stat, em)
     sides = {'l', 'r'};
     side_names = {'left', 'right'};
     c = 100; % Conversion to cm
-    methods = {'Shank clearance', 'Terminal swing', 'Initial contact'};
+    methods = {'Shank clearance', 'Mid-swing', 'Initial contact'};
 
     di = 0.2;
     di_l = 0.3;

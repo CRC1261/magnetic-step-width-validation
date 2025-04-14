@@ -84,8 +84,8 @@ function result = importResultFromBids(path, selection)
     result.omc.sc.sw_r = M_sig(:, k)';
     k = k + 1;
 
-    % Terminal swing result
-    result.omc.ts.name = 'Terminal swing';
+    % Mid swing result
+    result.omc.ts.name = 'Mid-swing';
     result.omc.ts.N = size(M_sig, 1);
     result.omc.ts.inds_l = M_sig(:, k)';
     k = k + 1;

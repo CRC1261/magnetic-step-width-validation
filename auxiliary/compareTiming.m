@@ -1,6 +1,6 @@
 function em = compareTiming(b, b_est)
 
-    % Use same minima times for lower and upper distance (for terminal swing)
+    % Use same minima times for lower and upper distance (for mid-swing)
     if size(b.inds_r, 1) == 1
         b.inds_r = [b.inds_r; b.inds_r];
         b.inds_l = [b.inds_l; b.inds_l];
