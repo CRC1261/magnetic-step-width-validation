@@ -37,5 +37,6 @@ function em = calcErrorMetrics(v, v_est)
     em.scc = corr(v', v_est', "Type", "Spearman");
 
     % MAE of variability
+    em.var_e = std(v) - std(v_est);
     em.var_mae = abs(std(v) - std(v_est));
 end

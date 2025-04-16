@@ -17,8 +17,9 @@ function gf = visualizeStepWidthStat(stat, em)
     y_sc = [5 30];
     i_p = 1 : N_p;
 
+    % Distribution plots --------------------------------------------------
     for i = 1 : 2
-        ax = subplot(2, 2, i);
+        ax = subplot(3, 2, i);
         ax.TickLabelInterpreter = 'latex';
 
         plotStatErrorBar(i_p, [stat.magn.sc.(sides{i})], -di, c, cmap(1, :));
@@ -36,23 +37,46 @@ function gf = visualizeStepWidthStat(stat, em)
         legend({['Estimate: ' methods{1}], ['Reference: ' methods{1}], ['Reference: ' methods{2}], ['Reference: ' methods{1}]}, 'FontSize', 14, 'Interpreter', 'latex', 'Location', 'northwest');
     end
 
-    y_sc = [0 13];
 
+    % Error plots ---------------------------------------------------------
+    y_sc = [-10 4];
     for i = 1 : 2
-        ax = subplot(2, 2, 2+i);
+        ax = subplot(3, 2, 2+i);
         ax.TickLabelInterpreter = 'latex';
 
-        plotMaeErrorBar(i_p, [em.sc_vs_sc.(sides{i})], -di/2, c, cmap(2, :));
+        yline(0, '--', 'Color', 'black', 'HandleVisibility', 'off');
         hold on
-        plotMaeErrorBar(i_p, [em.sc_vs_ts.(sides{i})], di/2, c, cmap(3, :));
-        plotMaeErrorBar(i_p, [em.sc_vs_ic.(sides{i})], di, c, cmap(4, :));
+        plotBiasErrorBar(i_p, [em.sc_vs_sc.(sides{i})], -di/2, c, cmap(2, :));
+        plotBiasErrorBar(i_p, [em.sc_vs_ts.(sides{i})], di/2, c, cmap(3, :));
+        plotBiasErrorBar(i_p, [em.sc_vs_ic.(sides{i})], di, c, cmap(4, :));
         grid on
         xlabel('Participant', 'Interpreter', 'latex', 'FontSize', 14)
-        ylabel('MAE (cm)', 'Interpreter', 'latex', 'FontSize', 14)
+        ylabel('Error (cm)', 'Interpreter', 'latex', 'FontSize', 14)
         ylim(y_sc)
         xlim(x_sc)
 
         title(['Error of ' side_names{i} ' step width'], 'Interpreter', 'latex', 'FontSize', 16);
+        legend({['Compared to ' lower(methods{1})], ['Compared to ' lower(methods{2})], ['Compared to ' lower(methods{3})]}, 'FontSize', 14, 'Interpreter', 'latex', 'Location', 'northwest');
+    end
+
+    % Variability error plots ---------------------------------------------
+    y_sc = [-1 2];
+    for i = 1 : 2
+        ax = subplot(3, 2, 4+i);
+        ax.TickLabelInterpreter = 'latex';
+
+        yline(0, '--', 'Color', 'black', 'HandleVisibility', 'off');
+        hold on
+        plotVariability(i_p, [em.sc_vs_sc.(sides{i})], -di/2, c, cmap(2, :));
+        plotVariability(i_p, [em.sc_vs_ts.(sides{i})], di/2, c, cmap(3, :));
+        plotVariability(i_p, [em.sc_vs_ic.(sides{i})], di, c, cmap(4, :));
+        grid on
+        xlabel('Participant', 'Interpreter', 'latex', 'FontSize', 14)
+        ylabel('Error (cm)', 'Interpreter', 'latex', 'FontSize', 14)
+        ylim(y_sc)
+        xlim(x_sc)
+
+        title(['Variability error of ' side_names{i} ' step width'], 'Interpreter', 'latex', 'FontSize', 16);
         legend({['Compared to ' lower(methods{1})], ['Compared to ' lower(methods{2})], ['Compared to ' lower(methods{3})]}, 'FontSize', 14, 'Interpreter', 'latex', 'Location', 'northwest');
     end
 
@@ -62,13 +86,19 @@ function plotStatErrorBar(i_p, es, dx, c, color)
     y = [es.mn] * c;
     z = [es.std] * c;
 
-    errorbar(i_p + dx, y, z, '.', 'Color', color, 'LineWidth', 1);
+    errorbar(i_p + dx, y, z, 's', 'Color', color, 'LineWidth', 1, 'MarkerSize', 4, 'MarkerFaceColor', color);
 end
 
-function plotMaeErrorBar(i_p, es, dx, c, color)
-    y = [es.mae] * c;
-    z = [es.mae_std] * c;
+function plotBiasErrorBar(i_p, es, dx, c, color)
+    y = [es.me] * c;
+    z = [es.me_std] * c;
 
-    errorbar(i_p + dx, y, z, '.', 'Color', color, 'LineWidth', 1);
+    errorbar(i_p + dx, y, z, 's', 'Color', color, 'LineWidth', 1, 'MarkerSize', 4, 'MarkerFaceColor', color);
+end
+
+function plotVariability(i_p, es, dx, c, color)
+    y = [es.var_e] * c;
+
+    plot(i_p + dx, y, 's', 'Color', color, 'LineWidth', 1, 'MarkerSize', 4, 'MarkerFaceColor', color);
 end
 
