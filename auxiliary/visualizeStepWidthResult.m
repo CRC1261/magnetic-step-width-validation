@@ -30,5 +30,5 @@ function gf = visualizeStepWidthResult(result)
         legend({['Estimate: ' result.magn.sc.name], ['Reference: ' result.omc.sc.name], ['Reference: ' result.omc.ts.name], ['Reference: ' result.omc.ic.name]}, 'FontSize', 14, 'Interpreter', 'latex');
     end
 
-    linkaxes(ax, 'x')
+    linkaxes(ax, 'xy')
 end
