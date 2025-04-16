@@ -91,7 +91,7 @@ end
 
 function plotBiasErrorBar(i_p, es, dx, c, color)
     y = [es.me] * c;
-    z = [es.me_std] * c;
+    z = [es.std] * c;
 
     errorbar(i_p + dx, y, z, 's', 'Color', color, 'LineWidth', 1, 'MarkerSize', 4, 'MarkerFaceColor', color);
 end
