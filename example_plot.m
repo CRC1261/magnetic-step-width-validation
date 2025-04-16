@@ -13,7 +13,7 @@ addpath('auxiliary')
 % Select local path of the dataset
 path = 'C:/data/';
 
-% Select subfolder (e.g., sub-01) and task (e.g., task-walk05ms) to load
+% Select subfolder (participants 01 - 08) and task (walk05ms) to load
 data_select = {'01', 'walk05ms'};
 
 % Load result -------------------------------------------------------------
