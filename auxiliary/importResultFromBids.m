@@ -1,5 +1,11 @@
 function result = importResultFromBids(path, selection)
 
+    if ~isfolder(path)
+        fprintf('Selected result directory ''%s'' does not exist.\n', path)
+        result = false;
+        return;
+    end
+
     % Append slash at the end if necessary
     if (path(end) ~= '/') && (path(end) ~= '\')
         path = [path '/'];
@@ -15,7 +21,13 @@ function result = importResultFromBids(path, selection)
     result = struct();
 
     % Check participants list ---------------------------------------------
-    participants = readcell([path 'participants.tsv'], 'FileType', 'text', 'Delimiter', '\t');
+    path_part = [path 'participants.tsv'];
+    if ~exist(path_part, 'file')
+        fprintf('File ''%s'' does not exist. Wrong data path?\n', path_part)
+        result = false;
+        return;
+    end
+    participants = readcell(path_part, 'FileType', 'text', 'Delimiter', '\t');
     for i_p = 2 : length(participants)
         if strcmp(participants{i_p, 1}, ['sub-' selection{1}]) 
             result.data_type = participants{i_p, 2};

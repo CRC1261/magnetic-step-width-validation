@@ -12,7 +12,7 @@ addpath('auxiliary')
 % User select -------------------------------------------------------------
 
 % Select local path of the dataset
-path = 'C:/motion_distest_bids/step_width/data/';
+path = 'C:/data/';
 
 data_select = {...
     {'01', 'walk05ms'},...
