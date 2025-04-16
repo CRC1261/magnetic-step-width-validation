@@ -11,7 +11,7 @@ addpath('auxiliary')
 
 % User select -------------------------------------------------------------
 % Select local path of the dataset
-path = 'C:/motion_distest_bids/step_width/data/';
+path = 'C:/data/';
 
 % Select subfolder (e.g., sub-01) and task (e.g., task-walk05ms) to load
 data_select = {'01', 'walk05ms'};
